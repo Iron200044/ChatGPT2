@@ -1,12 +1,10 @@
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image} from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image, ActivityIndicator} from 'react-native'
 import React, { useState, useEffect } from 'react'
 import Markdown from 'react-native-markdown-display';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Message } from '@/interfaces/AppInterfaces';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Link, Stack, useLocalSearchParams, useRouter } from 'expo-router';
-import { db } from '../../utils/firebaseConfig';
-import { doc, getDoc, updateDoc, addDoc, collection } from 'firebase/firestore/lite';
+import { Link, useLocalSearchParams, useRouter } from 'expo-router';
 import { useDataContext } from '@/context/DataContext/DataContext'; 
 import { useAuthContext } from '@/context/DataContext/AuthContext/AuthContext';
 
