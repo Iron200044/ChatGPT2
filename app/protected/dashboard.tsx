@@ -1,12 +1,12 @@
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, ActivityIndicator  } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Link, Stack } from 'expo-router';
+import { Link, Stack, router } from 'expo-router';
 import { useDataContext } from '@/context/DataContext/DataContext'
 import { useAuthContext } from '@/context/DataContext/AuthContext/AuthContext';
 
 export default function dashboard() {
-  const { user } = useAuthContext(); // para obtener user.uid
+  const { user, logOut } = useAuthContext(); // para obtener user.uid
   const { fetchUserChats } = useDataContext();
 
   const [chats, setChats] = useState<any[]>([]);
@@ -45,6 +45,16 @@ export default function dashboard() {
       </Link>
     ))
   }
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      // Opcional: redirigir a la pantalla de login
+      router.replace('/logInSignUp');
+    } catch (error) {
+      console.log("Logout Error:", error);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -110,7 +120,7 @@ export default function dashboard() {
         <View style={styles.divider} />
 
         {/* Opción: Logout */}
-        <TouchableOpacity style={[styles.menuItem, { marginTop: 16 }]}>
+        <TouchableOpacity style={[styles.menuItem, { marginTop: 16 }]} onPress={handleLogout}>
           <View style={styles.menuItemLeft}>
             <Ionicons name="log-out-outline" size={20} color="#EF4444" style={styles.menuIcon} />
             <Text style={[styles.menuItemText, { color: '#EF4444' }]}>Logout</Text>
