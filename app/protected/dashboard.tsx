@@ -12,6 +12,7 @@ export default function dashboard() {
   const [chats, setChats] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Cargar los chats del usuario al montar el componente
   useEffect(() => {
     const loadUserChats = async () => {
       try {
@@ -27,6 +28,7 @@ export default function dashboard() {
     loadUserChats();
   }, [user]);
 
+  // Función para renderizar la lista de chats
   const renderChatList = () => {
     if (loading) {
       return <ActivityIndicator size="large" color="#fff" style={{ marginTop: 16 }} />
@@ -46,6 +48,7 @@ export default function dashboard() {
     ))
   }
 
+  // Función para manejar el logout
   const handleLogout = async () => {
     try {
       await logOut();
