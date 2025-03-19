@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, ActivityIndicator  } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, ActivityIndicator, Modal  } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Link, Stack, router } from 'expo-router';
@@ -11,6 +11,9 @@ export default function dashboard() {
 
   const [chats, setChats] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalContent, setModalContent] = useState('');
 
   // Cargar los chats del usuario al montar el componente
   useEffect(() => {
@@ -59,6 +62,17 @@ export default function dashboard() {
     }
   };
 
+  // Función para mostrar el Modal
+  const showModal = (content: string) => {
+    setModalContent(content);
+    setModalVisible(true);
+  };
+
+  // Función para cerrar el Modal
+  const closeModal = () => {
+    setModalVisible(false); // Cerrar el modal
+  };
+
   return (
     <View style={styles.container}>
       {/* Contenedor scrolleable con las opciones */}
@@ -84,7 +98,7 @@ export default function dashboard() {
         <View style={styles.menuBox}>
 
         {/* Opción: Clear conversations */}
-        <TouchableOpacity style={styles.menuItem}>
+        <TouchableOpacity style={styles.menuItem} onPress={() => showModal('clear')}>
           <View style={styles.menuItemLeft}>
             <Ionicons name="trash-outline" size={20} color="#fff" style={styles.menuIcon} />
             <Text style={styles.menuItemText}>Clear conversations</Text>
@@ -92,12 +106,11 @@ export default function dashboard() {
         </TouchableOpacity>
 
         {/* Opción: Upgrade to Plus */}
-        <TouchableOpacity style={styles.menuItem}>
+        <TouchableOpacity style={styles.menuItem} onPress={() => showModal('upgrade')}>
           <View style={styles.menuItemLeft}>
             <Ionicons name="star-outline" size={20} color="#fff" style={styles.menuIcon} />
             <Text style={styles.menuItemText}>Upgrade to Plus</Text>
           </View>
-          {/* Etiqueta "NEW" */}
           <View style={styles.newBadge}>
             <Text style={styles.newBadgeText}>NEW</Text>
           </View>
@@ -130,6 +143,37 @@ export default function dashboard() {
           </View>
         </TouchableOpacity>
         </View>
+      {/* Modal */}
+      <Modal transparent={true} visible={modalVisible} animationType="fade">
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContainer}>
+            {modalContent === 'upgrade' ? (
+              <>
+                <Text style={styles.modalTitle}>Upgrade to Plus</Text>
+                <Text style={styles.modalText}>Enjoy premium features by sending 200.000 pesos to my nequi ;).</Text>
+                <TouchableOpacity style={styles.modalButton} onPress={closeModal}>
+                  <Text style={styles.modalButtonText}>Upgrade Now</Text>
+                </TouchableOpacity>
+              </>
+            ) : modalContent === 'clear' ? (
+              <>
+                <Text style={styles.modalTitle}>Clear Conversations</Text>
+                <Text style={styles.modalText}>Are you sure you want to clear all conversations?</Text>
+                <TouchableOpacity style={styles.modalButton} onPress={closeModal}>
+                  <Text style={styles.modalButtonText}>Cancel</Text>
+                </TouchableOpacity>
+              </>
+            ) : null}
+
+            {/* Close button only appears for Upgrade modal */}
+            {modalContent !== 'clear' && (
+              <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
+                <Text style={styles.modalButtonText}>Close</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        </View>
+      </Modal>
     </View>
   )
 }
@@ -187,5 +231,46 @@ const styles = StyleSheet.create({
         borderTopColor: '#3e3f44',
         paddingVertical: 12,
         paddingHorizontal: 16,
+      },
+      modalOverlay: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      },
+      modalContainer: {
+        width: '80%',
+        backgroundColor: '#fff',
+        padding: 20,
+        borderRadius: 10,
+        alignItems: 'center',
+      },
+      modalTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 15,
+      },
+      modalText: {
+        fontSize: 16,
+        marginBottom: 20,
+        textAlign: 'center',
+      },
+      modalButton: {
+        backgroundColor: '#10A37F',
+        paddingVertical: 12,
+        paddingHorizontal: 30,
+        borderRadius: 8,
+        marginTop: 10,
+      },
+      modalButtonText: {
+        color: '#fff',
+        fontSize: 16,
+      },
+      closeButton: {
+        backgroundColor: '#999',
+        paddingVertical: 12,
+        paddingHorizontal: 30,
+        borderRadius: 8,
+        marginTop: 10,
       },
 });

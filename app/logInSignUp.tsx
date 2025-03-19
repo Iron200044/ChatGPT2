@@ -2,8 +2,7 @@ import 'react-native-gesture-handler';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation, Link, useRouter } from 'expo-router';
-import { useAuthContext } from '@/context/DataContext/AuthContext/AuthContext'; // <-- tu AuthContext
-import { auth } from '@/utils/firebaseConfig'; // <-- si lo necesitas para mostrar user info
+import { useAuthContext } from '@/context/DataContext/AuthContext/AuthContext'; // <-- AuthContext
 
 export default function AuthScreen() {
   const router = useRouter();
@@ -12,18 +11,25 @@ export default function AuthScreen() {
   const [mode, setMode] = useState<'login' | 'register'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState<string>('');
 
   const handleSubmit = async () => {
     try {
+      setError(''); // Limpiar el error antes de intentar
       if (mode === 'register') {
-        await signUp(email, password); // del AuthContext
+        await signUp(email, password);
       } else {
-        await signIn(email, password); // del AuthContext
+        await signIn(email, password);
       }
       console.log('User in context:', user);
       router.replace('/protected/dashboard');
-    } catch (error) {
+    } catch (error: any) {
       console.log('Auth Error:', error);
+      if (error?.code === 'auth/invalid-credential') {
+        setError('Invalid credentials. Please check your email and password.');
+      } else {
+        setError('An error occurred. Please try again later.');
+      }
     }
   };
 
@@ -54,6 +60,9 @@ export default function AuthScreen() {
         value={password}
         onChangeText={setPassword}
       />
+
+      {/* Mostrar mensaje de error si lo hay */}
+      {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
       <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
         <Text style={styles.submitButtonText}>
@@ -116,5 +125,18 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 14,
     textDecorationLine: 'underline',
+  },
+  errorText: {
+    color: '#fff',
+    backgroundColor: '#EF4444',
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    marginTop: 16,
+    fontSize: 14,
+    textAlign: 'center',
+    width: '100%',
+    borderWidth: 1,
+    borderColor: '#EF4444',
   },
 });
