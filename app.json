@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "ChatGPT2",
-    "slug": "ChatGPT2",
+    "name": "ChatGPt V 2.0",
+    "slug": "ChatGPT V 2.0",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/gptdarklogo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -13,8 +13,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/gptdarklogo.png",
+        "backgroundColor": "#000000"
       },
       "package": "com.ironxd.ChatGPT2"
     },
@@ -28,10 +28,10 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/gptdarklogo.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#000000"
         }
       ]
     ],
@@ -45,6 +45,6 @@
       "eas": {
         "projectId": "ea7c272a-311a-456f-95f7-2c3e3f7ded96"
       }
-    }
+    }    
   }
 }
