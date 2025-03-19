@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "ChatGPt V 2.0",
-    "slug": "ChatGPT V 2.0",
+    "slug": "ChatGPT2",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/gptdarklogo.png",
