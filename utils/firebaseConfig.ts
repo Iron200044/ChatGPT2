@@ -7,12 +7,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDeyJbjBXRH3aJxqJysZcM2Q-0m0cpKh6E",
-  authDomain: "sam-chatgpt2-2025-1.firebaseapp.com",
-  projectId: "sam-chatgpt2-2025-1",
-  storageBucket: "sam-chatgpt2-2025-1.firebasestorage.app",
-  messagingSenderId: "132978720958",
-  appId: "1:132978720958:web:8c5272aa08089662301eef"
+  apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID
 };
 
 // Initialize Firebase
