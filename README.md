@@ -1,50 +1,143 @@
-# Welcome to your Expo app 👋
+# 🤖 ChatGPT2 - AI Chat Mobile App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicación móvil inspirada en ChatGPT desarrollada con **React Native + Expo**, integrada con la API de Gemini para generar respuestas conversacionales en tiempo real.
 
-## Get started
+La app permite a los usuarios interactuar con un asistente de inteligencia artificial mediante una interfaz moderna y optimizada para dispositivos móviles.
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## 🚀 Features
 
-2. Start the app
+- 💬 Chat conversacional con IA
+- 🤖 Integración con Gemini API
+- 📱 Interfaz móvil moderna y responsive
+- ⚡ Respuestas en tiempo real
+- 🧠 Manejo de contexto conversacional
+- 🔐 Configuración mediante variables de entorno
+- 🎨 UI inspirada en ChatGPT
 
-   ```bash
-    npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## 🛠️ Tech Stack
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Frontend
+- React Native
+- Expo Go
+- TypeScript
+- Context API
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### AI Integration
+- Gemini API
 
-## Get a fresh project
+---
 
-When you're ready, run:
+## 📂 Project Structure
 
 ```bash
-npm run reset-project
+.
+├── app/                    # Main screens and navigation
+├── assets/                 # Images, icons, and static resources
+├── context/
+│   └── DataContext/        # Global app state management
+├── interfaces/             # TypeScript interfaces and types
+├── utils/                  # Helper functions and API utilities
+│
+├── .gitignore
+├── app.json                # Expo configuration
+├── eas.json                # EAS Build configuration
+├── package.json
+├── package-lock.json
+├── tsconfig.json
+└── README.md
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## ⚙️ Installation
 
-To learn more about developing your project with Expo, look at the following resources:
+### 1️⃣ Clone the repository
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+git clone https://github.com/your-user/geminigpt-mobile.git
+cd geminigpt-mobile
+```
 
-## Join the community
+### 2️⃣ Install dependencies
 
-Join our community of developers creating universal apps.
+```bash
+npm install
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### 3️⃣ Start the project
+
+```bash
+npx expo start
+```
+
+---
+
+## 🔑 Environment Variables
+
+Create a `.env` file in the root directory.
+
+Example:
+
+```env
+EXPO_PUBLIC_GEMINI_API_KEY=your_api_key
+```
+
+---
+
+## 📱 Available Scripts
+
+```bash
+# Start Expo
+npm start
+
+# Android
+npm run android
+
+# iOS
+npm run ios
+
+# Web
+npm run web
+```
+
+---
+
+## 🧠 Gemini API Integration
+
+The application uses Gemini API to:
+
+- Generate AI responses
+- Maintain conversational flow
+- Process user prompts in real time
+
+---
+
+## 🎨 UI Inspiration
+
+This project was inspired by the ChatGPT mobile experience, focusing on:
+
+- Clean conversational interface
+- Smooth user experience
+- Fast interactions
+- Minimalist design
+
+---
+
+## 🚧 Future Improvements
+
+- 🗂️ Chat history
+- 🌙 Dark mode improvements
+- 🎤 Voice input support
+- 📎 File and image upload
+- 🧠 Multi-chat sessions
+- 🔔 Push notifications
+
+---
+
+## 👨‍💻 Author
+
+- Samuel Acero García
